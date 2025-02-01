@@ -1,35 +1,47 @@
-import { useState } from "react";
-import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
-import { uploadAudio } from "../utils/api";
+import React, { useState, useRef } from 'react';
 
-const Recorder = ({ setText }) => {
-  const { transcript, listening, resetTranscript } = useSpeechRecognition();
-  const [file, setFile] = useState(null);
+const Recorder = ({ onStartRecording, onStopRecording }) => {
+  const [isRecording, setIsRecording] = useState(false);
+  const mediaRecorderRef = useRef(null);
+  const audioChunksRef = useRef([]);
 
-  const startListening = () => {
-    resetTranscript();
-    SpeechRecognition.startListening({ continuous: true });
-  };
+  const startRecording = async () => {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRecorderRef.current = new MediaRecorder(stream);
+      
+      mediaRecorderRef.current.ondataavailable = (event) => {
+        audioChunksRef.current.push(event.data);
+      };
 
-  const stopListening = async () => {
-    SpeechRecognition.stopListening();
-    setText(transcript);
-  };
+      mediaRecorderRef.current.onstop = () => {
+        const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/wav' });
+        const audioUrl = URL.createObjectURL(audioBlob);
+        const audio = new Audio(audioUrl);
+        audio.play();
 
-  const handleUpload = async () => {
-    if (file) {
-      const text = await uploadAudio(file);
-      setText(text);
+        // Send audio data to the backend (optional)
+        onStopRecording(audioBlob);
+      };
+
+      mediaRecorderRef.current.start();
+      setIsRecording(true);
+      onStartRecording(); // Notify the parent to start processing
     }
+  };
+
+  const stopRecording = () => {
+    mediaRecorderRef.current.stop();
+    setIsRecording(false);
   };
 
   return (
     <div>
-      <button onClick={startListening}>🎤 Start</button>
-      <button onClick={stopListening}>⏹ Stop</button>
-      <input type="file" onChange={(e) => setFile(e.target.files[0])} />
-      <button onClick={handleUpload}>📤 Upload</button>
-      <p>{listening ? "Listening..." : "Click to start"}</p>
+      {isRecording ? (
+        <button onClick={stopRecording}>Stop Recording</button>
+      ) : (
+        <button onClick={startRecording}>Start Recording</button>
+      )}
     </div>
   );
 };

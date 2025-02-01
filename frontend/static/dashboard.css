@@ -1,0 +1,79 @@
+/* General body styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1e1e1e; /* Dark background */
+    color: #e0e0e0; /* Light text */
+}
+
+/* Layout container */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Layout with left panel (log) and right content area */
+.layout {
+    display: flex;
+    flex-grow: 1;
+}
+
+/* Left panel (logs) */
+.log-panel {
+    width: 250px;
+    background-color: #252526; /* Dark sidebar */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.log-panel button {
+    background-color: #3a3a3a; /* Dark buttons */
+    color: #e0e0e0; /* Light text */
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.log-panel button:hover {
+    background-color: #4CAF50; /* Green on hover */
+    color: white;
+}
+
+/* Right content panel */
+.main-content {
+    flex-grow: 1;
+    margin-left: 270px; /* Offset to make room for the log panel */
+    padding: 20px;
+    background-color: #1e1e1e; /* Dark background */
+}
+
+/* Chat area inside the main content */
+.chat-area {
+    background-color: #2d2d2d; /* Dark chat area */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    min-height: 400px;
+    color: #e0e0e0; /* Light text */
+}
+
+/* Area for displaying the action content (notes, transcriptions, etc.) */
+.action-area {
+    margin-top: 20px;
+    background-color: #2d2d2d; /* Dark action area */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    color: #e0e0e0; /* Light text */
+}

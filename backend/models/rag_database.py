@@ -34,7 +34,7 @@ def add_document(doc_id, text):
     with open(DOC_MAP_PATH, "wb") as f:
         pickle.dump(doc_map, f)
 
-def search(query, top_k=2):
+def search(query, top_k=1):
     """Search for the most relevant documents."""
     if len(doc_map) == 0:
         return ["No documents found"]

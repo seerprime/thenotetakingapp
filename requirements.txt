@@ -1,0 +1,9 @@
+whisper
+torch
+transformers
+llama-index
+faiss-cpu
+sentence-transformers
+fastapi
+uvicorn
+pydantic

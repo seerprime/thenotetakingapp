@@ -4,32 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quark Dashboard</title>
-    <link rel="stylesheet" href="/static/dashboard.css"> <!-- Link to the dashboard CSS -->
+    <link rel="stylesheet" href="/static/dashboard.css">
 </head>
 <body>
     <div class="dashboard-container">
-        <!-- Layout with logs on the left and main content on the right -->
         <div class="layout">
-            <!-- Left panel with buttons (logs) -->
             <div class="log-panel">
-                <button id="startTranscriptionBtn" onclick="startNewTranscription()">🎤 Start Transcription</button>
-                <button id="summarizeBtn" onclick="summarizeNotes()">📝 Summarize</button>
-                <button id="queryBtn" onclick="queryNotes()">🔍 Query</button>
+                <input type="file" id="audioFile">
+                <button onclick="uploadAudio()">🎤 Upload & Transcribe</button>
             </div>
-
-            <!-- Right panel with chat area and content display -->
             <div class="main-content">
-                <div class="chat-area" id="chatArea">
-                    <!-- Here we can dynamically display the conversation or actions -->
-                    <p>Chat area will be dynamically updated.</p>
-                </div>
                 <div class="action-area">
-                    <div id="noteContent">Waiting for input...</div>
+                    <h2>Transcription Output:</h2>
+                    <p id="transcriptionResult">Waiting for transcription...</p>
                 </div>
             </div>
         </div>
     </div>
-
-    <script src="/static/script.js"></script> <!-- Link to static JS for dynamic actions -->
+    <script src="/static/script.js"></script>
 </body>
 </html>

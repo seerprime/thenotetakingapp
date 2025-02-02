@@ -3,30 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarvis Notes</title>
+    <meta name="description" content="AI-powered note-taking and analysis tool">
     <link rel="stylesheet" href="/static/styles.css">
-    <title>Quark</title>
+    <!-- Preload fonts -->
+    <link
+        rel="preload"
+        href="/fonts/inter-var.woff2"
+        as="font"
+        type="font/woff2"
+        crossorigin
+    >
 </head>
 <body>
-    <section class="main">
-        <nav class="nav">
-            <nav class="nav1">
-                <i class="ri-menu-4-line"></i>
-            </nav>
-            <nav class="nav2">
-                <div class="line"></div>
-                <h2>QUARK</h2>
-                <div class="line"></div>
-            </nav>
-            <nav class="nav3">
-                <i class="fa-solid fa-microphone"></i>
-            </nav>
-        </nav>
-        <div class="content">
-            <div class="middle">
-                <h1><span class="gradient-text">AI Powered</span> <br> Note Assistant.</h1>
-                <a href="/dashboard"><button><i class="ri-shopping-bag-3-line"></i>Get Started</button></a>
-            </div>
-        </div>
-    </section>
+    <div id="root"></div>
+    <script type="module" src="/src/index.js"></script>
 </body>
 </html>
